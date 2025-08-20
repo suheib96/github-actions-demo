@@ -8,3 +8,10 @@ jobs:
         steps:
             - name: meinErsterSchritt
               run: echo "Hello World"
+    meinZweiterJob:
+        runs-on: ubuntu-latest
+        steps:
+            - name: derErsteSchrittVonJob2
+              run: echo "Hallo ich komme aus dem zweiten job"
+            - name: derZweiteSchrittVonJob2
+              run: echo "Hallo ich komme aus dem zweiten job"
