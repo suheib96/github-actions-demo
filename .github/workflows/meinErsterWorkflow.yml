@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: meinErsterSchritt
-              run: echo "Hello World"
+              run: abcd "Hello World"
     meinZweiterJob:
         needs: meinErsterJob
         runs-on: ubuntu-latest
