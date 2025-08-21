@@ -18,7 +18,6 @@ jobs:
             
             - name: SSH Connection
               run: |
-                 scp -i ~/.ssh/meinPrivateKey frontend/index.html ubuntu@${{secrets.EC2_IP}}:/var/www/html
-
+                ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "cat index.html > ~/index.html"
                 
     
