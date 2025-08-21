@@ -18,6 +18,6 @@ jobs:
             
             - name: SSH Connection
               run: |
-                ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "cat index.html > ~/index.html"
+                ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "cat frontend/index.html > ~/index.html"
                 
     
