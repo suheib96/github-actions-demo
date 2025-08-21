@@ -20,7 +20,7 @@ jobs:
               run: |
                 scp -i ~/.ssh/meinPrivateKey frontend/index.html ubuntu@${{secrets.EC2_IP}}:/home/ubuntu/index.html
                 ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo cp /home/ubuntu/index.html /var/www/html/index.html"
-    
+
     docker-test-job:
         runs-on: ubuntu-latest
 
@@ -31,6 +31,12 @@ jobs:
                 echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/meinPrivateKey
                 chmod 400 ~/.ssh/meinPrivateKey
                 ssh-keyscan -H ${{secrets.EC2_IP}}  >> ~/.ssh/known_hosts 
+
+             - name: install docker
+               run: |
+                ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo apt update"
+                ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo apt install docker.io -y"
+                ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo usermod -aG docker ubuntu"
              
              - name: start nginx container on ec2 instance
                run: ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "docker run -d -p 8080:80 nginx"
