@@ -6,6 +6,9 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
+            - name: checkout
+              uses: actions/checkout@v5
+
             - name: ssh setup
               run: | 
                 mkdir -p ~/.ssh
@@ -15,8 +18,7 @@ jobs:
             
             - name: SSH Connection
               run: |
-                ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "mkdir testOrdnerAusGithubActions"
-
+                 scp -i ~/.ssh/meinPrivateKey frontend/index.html ubuntu@${{secrets.EC2_IP}}:/var/www/html
 
                 
     
