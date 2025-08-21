@@ -21,3 +21,16 @@ jobs:
                 scp -i ~/.ssh/meinPrivateKey frontend/index.html ubuntu@${{secrets.EC2_IP}}:/home/ubuntu/index.html
                 ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo cp /home/ubuntu/index.html /var/www/html/index.html"
     
+    docker-test-job:
+        runs-on: ubuntu-latest
+
+        steps:
+             - name: ssh setup
+               run: | 
+                mkdir -p ~/.ssh
+                echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/meinPrivateKey
+                chmod 400 ~/.ssh/meinPrivateKey
+                ssh-keyscan -H ${{secrets.EC2_IP}}  >> ~/.ssh/known_hosts 
+             
+             - name: start nginx container on ec2 instance
+               run: ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "docker run -d -p 80:80 nginx"
