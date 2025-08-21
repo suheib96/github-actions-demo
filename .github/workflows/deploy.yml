@@ -16,6 +16,11 @@ jobs:
                 chmod 400 ~/.ssh/meinPrivateKey
                 ssh-keyscan -H ${{secrets.EC2_IP}}  >> ~/.ssh/known_hosts    
             
+            - name: install nginx
+              run: |
+                ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo apt update"
+                ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo apt install nginx -y"
+                
             - name: SSH Connection
               run: |
                 scp -i ~/.ssh/meinPrivateKey frontend/index.html ubuntu@${{secrets.EC2_IP}}:/home/ubuntu/index.html
