@@ -33,4 +33,4 @@ jobs:
                 ssh-keyscan -H ${{secrets.EC2_IP}}  >> ~/.ssh/known_hosts 
              
              - name: start nginx container on ec2 instance
-               run: ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "docker run -d -p 80:80 nginx"
+               run: ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "docker run -d -p 8080:80 nginx"
