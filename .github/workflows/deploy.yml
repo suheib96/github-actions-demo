@@ -45,4 +45,8 @@ jobs:
                 ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo usermod -aG docker ubuntu"
              
              - name: start nginx container on ec2 instance
-               run: ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "docker run -d -p 8080:80 nginx"
+               run: ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "
+                docker stop my-nginx-container
+                docker rm my-nginx-container
+                docker run -d --name my-nginx-container -p 8080:80 nginx 
+                "
