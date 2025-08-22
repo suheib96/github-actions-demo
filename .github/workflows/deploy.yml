@@ -43,6 +43,7 @@ jobs:
               run: |
                 scp -i ~/.ssh/meinPrivateKey -r frontend ubuntu@${{secrets.EC2_IP}}:/home/ubuntu
                 ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "docker build -t frontend-image ./frontend/"
+                ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "docker run -d --name mein-frontend-container -p 8081:80 frontend-image"
 
     docker-test-job:
         needs: deploy
