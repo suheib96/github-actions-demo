@@ -21,7 +21,7 @@ jobs:
                 ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo apt update"
                 ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo apt install nginx -y"
                 
-            - name: SSH Connection
+            - name: index.html für nginx bereitstellen
               run: |
                 scp -i ~/.ssh/meinPrivateKey frontend/index.html ubuntu@${{secrets.EC2_IP}}:/home/ubuntu/index.html
                 ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo cp /home/ubuntu/index.html /var/www/html/index.html"
@@ -47,7 +47,7 @@ jobs:
                 ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo apt install docker.io -y"
                 ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo usermod -aG docker ubuntu"
                
-             - name: start nginx container on ec2 instance
+             - name: start frontend container on ec2 instance
                run: |
                   scp -i ~/.ssh/meinPrivateKey -r frontend ubuntu@${{secrets.EC2_IP}}:/home/ubuntu
                   ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "
