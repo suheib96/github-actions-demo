@@ -46,8 +46,8 @@ jobs:
              
              - name: start nginx container on ec2 instance
                run: ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "
-                docker stop my-nginx-container || true &&
-                docker rm my-nginx-container || true &&
+                docker stop my-nginx-container || true 
+                docker rm my-nginx-container || true 
                 docker run -d --name my-nginx-container -p 8080:80 nginx 
                 "
                 
