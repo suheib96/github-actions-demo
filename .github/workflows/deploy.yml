@@ -33,7 +33,7 @@ jobs:
         steps:
              - name: checkout
                uses: actions/checkout@v5
-               
+
              - name: ssh setup
                run: | 
                 mkdir -p ~/.ssh
@@ -51,6 +51,7 @@ jobs:
                run: |
                   scp -i ~/.ssh/meinPrivateKey -r frontend ubuntu@${{secrets.EC2_IP}}:/home/ubuntu
                   ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "
+                    docker build -t frontend-image /home/ubuntu/frontend
                     docker stop mein-frontend-container || true 
                     docker rm mein-frontend-container || true 
                     docker run -d --name mein-frontend-container -p 8081:80 frontend-image 
