@@ -38,10 +38,11 @@ jobs:
                 echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/meinPrivateKey
                 chmod 400 ~/.ssh/meinPrivateKey
                 ssh-keyscan -H ${{secrets.EC2_IP}}  >> ~/.ssh/known_hosts 
-                
+
             - name: copy frontend ordner zu ec2
               run: |
                 scp -i ~/.ssh/meinPrivateKey -r frontend ubuntu@${{secrets.EC2_IP}}:/home/ubuntu
+                ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "docker build -t frontend-image ./frontend/"
 
     docker-test-job:
         needs: deploy
