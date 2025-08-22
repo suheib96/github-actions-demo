@@ -27,6 +27,7 @@ jobs:
                 ssh -i ~/.ssh/meinPrivateKey ubuntu@${{secrets.EC2_IP}} "sudo cp /home/ubuntu/index.html /var/www/html/index.html"
 
     docker-test-job:
+        needs: deploy
         runs-on: ubuntu-latest
 
         steps:
