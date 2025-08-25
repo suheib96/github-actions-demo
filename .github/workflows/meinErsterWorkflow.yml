@@ -3,6 +3,13 @@ name: meinErsterWorkflow
 on: push
 
 jobs:
+    meinDritterJob:
+         needs: meinZweiterJob
+         runs-on: ubuntu-latest
+         steps:
+            - name: Datumsschritt
+              run: date
+              
     meinZweiterJob:
         needs: meinErsterJob
         runs-on: ubuntu-latest
@@ -11,15 +18,9 @@ jobs:
               run: echo "Hallo ich bin der erste Schritt aus dem zweiten job"
             - name: derZweiteSchrittVonJob2
               run: echo "Hallo ich bin der zweite Schritt aus dem zweiten job"
-              
+
     meinErsterJob:
         runs-on: ubuntu-latest
         steps:
             - name: meinErsterSchritt
               run: echo "Hello World!"
-    meinDritterJob:
-         needs: meinZweiterJob
-         runs-on: ubuntu-latest
-         steps:
-            - name: Datumsschritt
-              run: date
