@@ -18,3 +18,7 @@ test("multipliziert 7,5, ergebniss soll 35 sein", () => {
 test("dividieren 10,2, ergebniss soll 5 sein", () => {
     expect(dividieren(10,2)).toBe(5)
 })
+
+test("dividieren durch 0 schmeißt einen Fehler", () => {
+    expect(() => dividieren(5,0)).toThrow("Division durch 0 ist nicht erlaubt!")
+})
