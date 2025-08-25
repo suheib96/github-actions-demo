@@ -4,14 +4,14 @@ on: push
 
 jobs:
     meinDritterJob:
-         needs: meinZweiterJob
+        #  needs: meinZweiterJob
          runs-on: ubuntu-latest
          steps:
             - name: Datumsschritt
               run: date
-              
+
     meinZweiterJob:
-        needs: meinErsterJob
+        # needs: meinErsterJob
         runs-on: ubuntu-latest
         steps:
             - name: derErsteSchrittVonJob2
