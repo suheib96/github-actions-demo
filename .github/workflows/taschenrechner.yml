@@ -1,0 +1,24 @@
+name: Test uns deployment vom Taschenrechner
+
+on : push
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@v5
+            
+            - name: Setup Nodejs
+              uses: actions/setup-node@v4
+              with: 
+                node-version: "20"
+
+            - name: install dependencies
+              run: |
+                cd testing-example 
+                npm install
+
+            - name: test
+              run: |
+                cd testing-example 
+                npm test
