@@ -1,6 +1,7 @@
-name: Test uns deployment vom Taschenrechner
+name: Test und deployment vom Taschenrechner
 
 on : push
+
 jobs:
     test:
         runs-on: ubuntu-latest
