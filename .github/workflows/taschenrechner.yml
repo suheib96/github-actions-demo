@@ -29,6 +29,12 @@ jobs:
               with:
                 name: coverage-report
                 path: testing-example/coverage
+
+            - name: math.js upload
+              uses: actions/upload-artifact@v4
+              with:
+                name: math.js
+                path: testing-example/math.js
     deploy:
         needs: test
         runs-on: ubuntu-latest
