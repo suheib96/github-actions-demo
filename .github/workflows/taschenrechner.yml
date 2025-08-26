@@ -39,6 +39,24 @@ jobs:
                 name: coverage-report
                 path: testing-example/coverage
 
+            - name: Slack Nachricht bei Erfolg
+              if: ${{success()}}
+              uses: slackapi/slack-github-action@v2.1.1
+              with:
+                webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+                webhook-type: incoming-webhook
+                payload: |
+                    text: "✅ Test Job erfolgreich durchgelaufen - Jetzt wird deployt"
+
+            - name: Slack Nachricht bei Nicht Erfolg
+              if: ${{failure()}}
+              uses: slackapi/slack-github-action@v2.1.1
+              with:
+                webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+                webhook-type: incoming-webhook
+                payload: |
+                    text: "❌ Test Job fehlgeschalgen - Bitte sofort überprüfen"
+
     deploy:
         needs: test
         runs-on: ubuntu-latest
