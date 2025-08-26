@@ -16,9 +16,9 @@ function dividieren(a,b){
     return a / b
 }
 
-function dummyfunction(){
-    return 0;
-}
+// function dummyfunction(){
+//     return 0;
+// }
 module.exports = {
     addieren,
     subtrahieren,
