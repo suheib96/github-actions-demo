@@ -1,6 +1,9 @@
 name: Deployment auf den EC2 Maschinen des LBs
 
-on: workflow_dispatch
+on: 
+  push:
+    tags:
+      - 'v*'
 
 jobs:
     SSH-setup:
