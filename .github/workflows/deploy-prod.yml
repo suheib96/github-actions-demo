@@ -1,4 +1,4 @@
-name: Deployment auf den EC2 Maschinen des LBs
+name: Deployment auf den Produktions-EC2 Maschinen des LBs
 
 on: 
   push:
@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 jobs:
-    SSH-setup:
+    deploy:
         runs-on: ubuntu-latest
         steps:
 

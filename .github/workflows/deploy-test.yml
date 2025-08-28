@@ -3,7 +3,7 @@ name: Deployment auf die Testing EC2 Maschine
 on: push
 
 jobs:
-    SSH-setup:
+    deploy:
         runs-on: ubuntu-latest
         steps:
 
