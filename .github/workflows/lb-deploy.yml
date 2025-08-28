@@ -1,6 +1,6 @@
 name: Deployment auf den EC2 Maschinen des LBs
 
-on: push
+on: workflow_dispatch
 
 jobs:
     SSH-setup:
